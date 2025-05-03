@@ -1,0 +1,873 @@
+html {
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* STYLE DE LA PAGE DE BLOG ================================================================ */
+.navbar {
+    background-color: #386FA4;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    position: absolute;
+    left: 20px;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+
+}
+
+.nav-links li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.nav-links li a.pageactive  {
+    color: #D7C474;
+}
+
+.nav-links li a:hover {
+    text-decoration: underline;
+}
+
+.login-link {
+    position: absolute;
+    right: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #D7C474;
+    transition: all 0.5s ease;
+}
+
+.login-link:hover {
+    transform: scale(1.1);
+}
+
+/* SECTION D'ACCUEIL */
+.recentpost {
+    background-color: #f4f4f9;
+}
+.accueilsection {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #f4f4f9;
+    background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 4em;
+    margin: 0;
+    margin-bottom: 150px;
+    color: white;
+}
+
+
+.intro {
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+    position: absolute;
+    bottom: 200px;
+    background-color: #D7C474;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.intro a {
+    color: #000000;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.intro:hover {
+    transform: scale(1.1);
+}
+
+.arrow {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #386FA4;
+    padding: 20px;
+    color: #fff;
+}
+
+/* STYLE DE LA SECTION DES RECENTS POST ET DE LA PAGE ARCHIVES========================================================= */
+
+.Billet-blog {
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+
+.post-container {
+    flex: 1;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.post-container.with-comments {
+    flex: 0.7;
+}
+
+/* En-tête du post */
+.post-header {
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.post-auteur {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Contenu du post */
+.post-content {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Conteneur des commentaires */
+.comments-container {
+    display: none;
+    max-width: 400px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comments-container.visible {
+    display: block;
+}
+
+.comments-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+/* Styles de chaque commentaire */
+.commentaire {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+
+.text {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Formulaire de commentaire */
+.comment-form {
+    margin-top: 1.5rem;
+}
+
+.comment-form h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+.button-commentaire {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #386FA4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.scroll {
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-color: #386FA4 #ffffff;
+    scrollbar-width: thin;
+}
+
+.scrollable {
+    max-height: 330px;
+    overflow-y: auto;
+    scrollbar-color: #386FA4 #ffffff;
+    scrollbar-width: thin;
+}
+
+textarea {
+    max-height: fit-content;
+}
+
+.commentButton {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #386FA4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    float: right;
+}
+
+.commentButton:hover,
+.button-commentaire:hover {
+    background-color: #1c3e5f;
+}
+
+.comments-vide {
+    display: block;
+    max-width: 800px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.photo_profil_comment {
+width: 50px;
+height: 50px;
+border-radius: 50px;
+}
+
+/* STYLE DE LA PAGE DE CONNEXION ================================================================ */
+.formconnexion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #0073e6;
+    box-shadow: 0 0 5px rgba(0, 115, 230, 0.2);
+}
+
+.button-form {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #386FA4;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.5s ease;
+}
+
+.button-form:hover {
+    background-color: #0c4d8e;
+}
+/* STYLES DE LA PAGE DE PROFIL ================================================================================ */
+.button-deco {
+    align-self: flex-end;
+    margin-top: 48px;
+    padding: 10px 16px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1em;
+}
+.button-deco:hover {
+    background-color: #c82333;
+}
+.profile-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+.profile-info p {
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.bouttonprofil {
+    padding: 10px 16px;
+    background-color: #386FA4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+}
+.bouttonprofil:hover {
+    background-color: #1c3e5f;
+}
+
+.profile-photo {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile-info{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-photo {
+    border-right: 2px solid #000000;
+}
+
+.profile-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid #386FA4;
+}
+.sectionprofil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+ /* STYLES DE LA PAGE D'ADMINISTRATION ================================================== */
+
+ .billetmessage{
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+ .barrehorizontale button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #386FA4;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.barrehorizontale button:hover {
+    background: #ffffff;
+    color: #1c3e5f;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.paneladmin-section {
+    display: none;
+}
+
+.paneladmin-section.active {
+    display: block;
+    overflow-y: auto;
+    max-height: 600px;
+    scrollbar-color: #386FA4 #ffffff;
+    scrollbar-width: thin;
+}
+
+.paneladmin-section h1 {
+    text-align: center;
+    font-size: 4em;
+    margin: 0;
+    color: black;
+
+}
+
+.admin-section {
+    display: flex;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+
+.barrehorizontale {
+    background-color: #1c3e5f;
+    padding: 20px;
+}
+
+.barrehorizontale ul {
+    list-style-type: none;
+}
+
+
+/* DESIGN DU FORMULAIRE DE CREATION DE POST ================ */
+
+.form-containercreateposte {
+width: 100%;
+max-width: 600px;
+margin: 30px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-containercreateposte h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.form-groupAdmin {
+margin-bottom: 20px;
+}
+
+.form-groupAdmin label {
+font-weight: bold;
+display: block;
+margin-bottom: 8px;
+}
+
+.form-groupAdmin input[type="text"], 
+.form-groupAdmin textarea, 
+.form-groupAdmin input[type="file"] {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+}
+
+.form-groupAdmin textarea {
+resize: vertical;
+}
+
+.createpost-button {
+width: 100%;
+padding: 12px;
+background-color: #386FA4;
+color: #fff;
+border: none;
+border-radius: 4px;
+font-size: 18px;
+cursor: pointer;
+transition: background-color 0.5s;
+}
+
+.createpost-button:hover {
+background-color: #1c3e5f;
+}
+
+/* DESIGN DE LA SECTION DE CONSULTATION ET DE MODIFICATION DES UTILISATEURS ================ */
+
+.sectionadmin {
+    background-color: #f4f4f9;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.admin-container {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionadmin h1 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    width: 80vw;
+}
+
+th,
+td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #1c3e5f;
+    color: #fff;
+}
+
+.modificationUser {
+    display: none;
+    width: 100%;
+    border: 3px solid red;
+    background-color: #4CAF50 !important;
+}
+tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+.custom_user {
+    display: table-row;
+}
+
+/* Boutons */
+.delete-boutton,
+.custom_user,
+.modif_userform {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.modif_userform {
+    background-color: #ffc800;
+    color: rgb(0, 0, 0);
+}
+
+.modif_userform:hover {
+    background-color: #907204;
+}
+
+.custom_user {
+    background-color: #4CAF50;
+    color: white;
+
+}
+
+.custom_user:hover {
+    background-color: #227326;
+}
+
+.delete-boutton {
+    background-color: #e60000;
+    color: white;
+}
+
+.delete-boutton:hover {
+    background-color: #b30000;
+}
+
+.add-boutton {
+    background-color: #0073e6;
+    color: white;
+}
+
+.add-boutton:hover {
+    background-color: #005bb5;
+}
+.tablescroll {
+    background-color: #fff;;
+    max-height: 600px;
+    max-width: 80vw;
+    overflow-y: auto;
+    overflow-x: auto;
+    scrollbar-color: #386FA4 #ffffff;
+    scrollbar-width: thin;
+}
+/* DESIGN DE LA SECTION DE CONSULTATION / SUPPRESION / MODIFICATION DES BILLET ET COMMENTAIRES ======== */
+
+.modifbuttonbillet {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 10px;
+    background-color: #ebad00;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+.modifbuttonbillet:hover {
+    background-color: #624d00;
+}
+
+ 
+.billet_class_modif {
+    background-color: #ebad00;
+    display: none;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.billet_class_modif label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+.billet_class_modif input[type="text"],
+.billet_class_modif textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+}
+
+.billet_class_modif input[type="submit"] {
+    background-color: #b68222;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.billet_class_modif input[type="submit"]:hover {
+    background-color: #976304;
+    color: white;
+}
+
+.modifbuttoncomment {
+    background-color: #ebad00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.modifbuttoncomment:hover {
+    background-color: #a57900;
+}
+
+form button[type='submit'] {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+form button[type='submit']:hover {
+    background-color: #d32f2f;
+}
+
+.commentaire_class_modif {
+    display: none;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.commentaire_class_modif label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.commentaire_class_modif textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+}
+
+.commentaire_class_modif textarea {
+    min-height: 80px;
+}
+
+.commentaire_class_modif input[type='submit'] {
+    background-color: #ebad00;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.commentaire_class_modif input[type='submit']:hover {
+    background-color: #8e6800;
+}
+
+.lesbouttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentaireadmin {
+    background-color: grey;
+    border-radius: 8px;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.commentaireadminP {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.h1sansperm {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+.pcommentadd {
+    background-color: #f4f4f9;
+    color: red;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    text-align: center;
+}
